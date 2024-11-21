@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPL Predictions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>EPL Match Predictions for the Weekend</h1>
+    <button onclick="fetchAllPredictions()">Get All EPL Predictions</button>
+    <button onclick="fetchBestFivePredictions()">Get Best 5 Predictions</button>
+    
+    <div id="predictions"></div>
+    
+    <script>
+        // Function to fetch all predictions
+        function fetchAllPredictions() {
+            fetch('/get_all_predictions')
+                .then(response => response.json())
+                .then(data => displayPredictions(data));
+        }
+
+        // Function to fetch the best 5 predictions
+        function fetchBestFivePredictions() {
+            fetch('/get_best_five_predictions')
+                .then(response => response.json())
+                .then(data => displayPredictions(data));
+        }
+
+        // Function to display predictions on the page
+        function displayPredictions(predictions) {
+            let predictionsDiv = document.getElementById("predictions");
+            predictionsDiv.innerHTML = '';  // Clear previous predictions
+            
+            predictions.forEach(prediction => {
+                let predictionElement = document.createElement('div');
+                predictionElement.classList.add('prediction');
+                predictionElement.innerHTML = `
+                    <p><strong>Match:</strong> ${prediction.match}</p>
+                    <p><strong>Prediction:</strong> ${prediction.prediction}</p>
+                    <p><strong>Probability:</strong> ${prediction.probability}%</p>
+                    <hr>
+                `;
+                predictionsDiv.appendChild(predictionElement);
+            });
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPL Predictions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>EPL Match Predictions for the Weekend</h1>
+    <button onclick="fetchAllPredictions()">Get All EPL Predictions</button>
+    <button onclick="fetchBestFivePredictions()">Get Best 5 Predictions</button>
+    
+    <div id="predictions"></div>
+    
+    <script>
+        // Function to fetch all predictions
+        function fetchAllPredictions() {
+            fetch('/get_all_predictions')
+                .then(response => response.json())
+                .then(data => displayPredictions(data));
+        }
+
+        // Function to fetch the best 5 predictions
+        function fetchBestFivePredictions() {
+            fetch('/get_best_five_predictions')
+                .then(response => response.json())
+                .then(data => displayPredictions(data));
+        }
+
+        // Function to display predictions on the page
+        function displayPredictions(predictions) {
+            let predictionsDiv = document.getElementById("predictions");
+            predictionsDiv.innerHTML = '';  // Clear previous predictions
+            
+            predictions.forEach(prediction => {
+                let predictionElement = document.createElement('div');
+                predictionElement.classList.add('prediction');
+                predictionElement.innerHTML = `
+                    <p><strong>Match:</strong> ${prediction.match}</p>
+                    <p><strong>Prediction:</strong> ${prediction.prediction}</p>
+                    <p><strong>Probability:</strong> ${prediction.probability}%</p>
+                    <hr>
+                `;
+                predictionsDiv.appendChild(predictionElement);
+            });
+        }
+    </script>
+</body>
+</html>
